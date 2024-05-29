@@ -1,4 +1,6 @@
 import { Injectable } from "@nestjs/common";
+import { CreateTaskDto } from "./dto/create-taks-dto";
+import { UpdateTaskDto } from "./dto/update-taks-dto";
 
 
 @Injectable()
@@ -11,7 +13,7 @@ export class taskService{
         return this.task
     }
 
-    createTask(task:any){
+    createTask(task:CreateTaskDto){
         this.task.push({
             ...task,
             id: this.task.length + 1
@@ -20,7 +22,8 @@ export class taskService{
         return task
     }
 
-    updateTask(){
+    updateTask(task:UpdateTaskDto){
+        console.log(task)
         return 'actualizando tarea'
     }
 

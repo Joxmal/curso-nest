@@ -20,4 +20,12 @@ export class UsersService {
         return this.users
     }
 
+    createUser(user:CreateUSerDto){
+        this.users.push()
+        return{
+            ...user,
+            id:this.users.length + 1
+        }
+    }
+
 }

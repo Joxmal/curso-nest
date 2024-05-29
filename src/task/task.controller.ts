@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, Patch, Post, Put, Query } from "@nestjs/common";
 import { TaskModule } from "./task.module";
 import { taskService } from "./task.service";
+import { CreateTaskDto } from "./dto/create-taks-dto";
+import { UpdateTaskDto } from "./dto/update-taks-dto";
 
 @Controller('/task')
 export class taskController {
@@ -16,14 +18,14 @@ export class taskController {
     }
 
     @Post()
-    createTask(@Body() task:any){
+    createTask(@Body() task:CreateTaskDto){
         console.log(task)
      return this.taskService.createTask(task)
     }
 
     @Put()
-    updateTask(){
-     return this.taskService.updateTask()
+    updateTask(@Body() task:UpdateTaskDto){
+     return this.taskService.updateTask(task)
     }
     
     @Patch()

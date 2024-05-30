@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Patch, Post, Put, Query } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Patch, Post, Put, Query} from "@nestjs/common";
 import { TaskModule } from "./task.module";
 import { taskService } from "./task.service";
 import { CreateTaskDto } from "./dto/create-taks-dto";

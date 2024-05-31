@@ -4,8 +4,18 @@ import { UsersService } from './users.service';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { AuthMiddleware } from './auth/auth.middleware';
 import { PrismaService } from 'src/prisma.service';
+import {JwtModule} from '@nestjs/jwt'
+import { jwtConstants } from './entities/jwt-constanst';
 
 @Module({
+  imports:[
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '10s' },
+    }),
+  ],
+
   controllers: [UsersController],
   providers: [UsersService,PrismaService]
 })

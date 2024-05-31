@@ -65,7 +65,11 @@ export class UsersService {
 
         if(!checkPassword) throw new HttpException('contraseña incorrecta', 403)
 
-        const data  = findUser
+        const token = 
+        const data  = {
+            user:findUser,
+
+        }
 
     
         return data

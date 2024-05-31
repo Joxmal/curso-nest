@@ -1,7 +1,16 @@
+
+/prisma/schema.prisma
+
 # compiled output
 /dist
-/node_modules
+node_modules
 /build
+
+#docker volumes
+/pgdata
+
+#prisma
+
 
 # Logs
 logs

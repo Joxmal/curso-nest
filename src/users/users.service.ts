@@ -2,11 +2,17 @@ import { Injectable, ConflictException, HttpException, HttpStatus } from '@nestj
 import { CreateUserDto, LoginUser } from './dto/create-user-dto';
 import { PrismaService } from 'src/prisma.service';
 import { hash, compare } from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
 
-    constructor(private prisma: PrismaService){}
+    constructor(
+        private prisma: PrismaService,
+        private jwtService:JwtService
+    ){
+
+    }
 
     getUser(){
         return this.prisma.user.findMany()
@@ -18,6 +24,8 @@ export class UsersService {
                 id:parseInt(id)
             }
         })
+
+        if(!user){ throw new HttpException('no existe este usuario', HttpStatus.CONFLICT)  }
         
         return user
         // return this.prisma.user.findFirst({})
@@ -65,10 +73,12 @@ export class UsersService {
 
         if(!checkPassword) throw new HttpException('contraseña incorrecta', 403)
 
-        const token = 
-        const data  = {
-            user:findUser,
+        const payload = { id: findUser.id, name:findUser.name}
+        const token = this.jwtService.sign(payload)
 
+        const data  = {
+            user: findUser,
+            token
         }
 
     

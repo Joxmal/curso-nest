@@ -9,6 +9,7 @@ export class AuthMiddleware implements NestMiddleware {
     const {authorization} = req.headers
 
     if(!authorization){
+      console.log(authorization)
       throw new HttpException('No autorizado', HttpStatus.UNAUTHORIZED)
     }
 

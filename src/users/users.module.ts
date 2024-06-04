@@ -6,18 +6,19 @@ import { AuthMiddleware } from './auth/auth.middleware';
 import { PrismaService } from 'src/prisma.service';
 import {JwtModule} from '@nestjs/jwt'
 import { jwtConstants } from './entities/jwt-constanst';
+import { JwtStrategy } from './jwt.strategy';
 
 @Module({
   imports:[
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '10s' },
+      signOptions: { expiresIn: '100s' },
     }),
   ],
 
   controllers: [UsersController],
-  providers: [UsersService,PrismaService]
+  providers: [UsersService,PrismaService, JwtStrategy]
 })
 export class UsersModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

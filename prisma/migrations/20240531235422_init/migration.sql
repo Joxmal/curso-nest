@@ -13,9 +13,11 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Posts" (
     "id" SERIAL NOT NULL,
-    "title" TEXT NOT NULL,
+    "title" VARCHAR(100) NOT NULL,
     "body" TEXT NOT NULL,
     "authorID" INTEGER NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateAt" TIMESTAMP(3) NOT NULL,
 
     CONSTRAINT "Posts_pkey" PRIMARY KEY ("id")
 );
